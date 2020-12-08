@@ -1,0 +1,57 @@
+<div class="row">
+    <form [formGroup]="frmProduto" (submit)="salvar()">
+    <div class="col-md-3">
+<app-menu-lateral></app-menu-lateral>
+    </div>
+
+    <div class="col-md-9">
+
+Nome produto
+<div>
+ <input  class="form-control" formControlName="nome" name="nome"  value="{{ produto.nome  }}">
+</div>
+
+Estoque
+<div>
+ <input  class="form-control" formControlName="estoque" name="estoque" value="{{ produto.estoque  }}">
+</div>
+
+Preço
+<div>
+ <input class="form-control" formControlName="preco" name="preco"  value="{{ produto.preco  }}">
+</div>
+
+SKU
+<div>
+ <input class="form-control" formControlName="sku" name="sku"  value="{{ produto.sku  }}">
+</div>
+
+Descrição
+<div>
+ <textarea class="form-control" formControlName="descricao" name="descricao" >{{ produto.descricao  }}</textarea> 
+</div>
+
+<div>
+
+    <div class="row">
+    <div class="col-md-3" *ngFor="let foto of produto.fotos">
+
+        <img  class="img-fluid" src="{{ 'http://localhost:50751/fotos_produtos/' + produto.dirFotos + '/' + foto }}">
+
+
+    </div>
+</div>
+</div>
+
+<div>
+
+    <button (click)="salvar()" class="btn btn-warning"> salvar </button>
+    <button (click)="cancelar()" class="btn btn-danger"> cancel </button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>

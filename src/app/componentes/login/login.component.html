@@ -1,0 +1,59 @@
+
+<div>
+   <h3> A-Z logo  - Área do cliente </h3>
+</div>
+
+<div class="container">
+<div class="row">
+
+   <div class="col-md-9" >
+
+     <img class="img-fluid" [src]="'./assets/marketplaces.jpg'">
+   </div>
+
+  <div  class="col-md-3" style="background-color:#00aeef" >
+
+    <div class="p-2">
+
+      <h5>Já é cliente?</h5>
+      <div class="p-1">
+        É nosso cliente ou possui um login?
+        Entre com os dados abaixo.
+      </div>
+
+    </div>
+
+<form [formGroup]="frmCredencial"  (submit)="logar()">
+
+  <label>usuário</label>
+  <input class="form-control" formControlName="usuario" placeholder="usuário">
+
+  <label>senha</label>
+  <input class="form-control" formControlName="senha" placeholder="senha">
+
+  <div class="m-1">
+  <button type="submit" class="btn btn-block btn-outline-success">iniciar sessão</button>
+  </div>
+</form>
+    <div>
+      <a href="#">Esqueci minha senha </a>
+    </div>
+    <div>
+    Não é nosso cliente?<a href="#"> conheça nossos planos</a>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+  <div>
+    <div class="row">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row">
+
+  <div class="col-md-3">
+<app-menu-lateral></app-menu-lateral>
+  </div>
+
+  <div class="col-md-9">
+
+<button (click)="recuperarProdutos()" >buscar</button>
+
+
+<div *ngFor="let produto of produtos"  class="row border border-light"  >
+
+
+  <div class="col-md-1">
+     <img class="img-fluid rounded-circle" src="{{ 'http://localhost:50751/fotos_produtos/' + produto.dirFotos + '/' + produto.fotos[0] }}">
+  </div>
+
+  <div class="col-md-1"> #{{ produto.sku }} </div>
+
+  <div class="col-md-3"> {{ produto.nome }} </div>
+
+  <div class="col-md-3">
+    {{ produto.preco }}  
+
+
+    <a [routerLink]="['/anuncios/anunciar/' + produto.id]" class="btn btn-sm btn-primary">anunciar</a>
+  </div>
+
+
+
+</div>
+
+</div>
+

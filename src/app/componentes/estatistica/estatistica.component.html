@@ -1,0 +1,74 @@
+<div class="row">
+
+    <div class="col-md-2">
+  <app-menu-lateral></app-menu-lateral>
+    </div>
+
+
+    <div class="col-md-5">
+
+    <div>
+       <select (change)="mudarVariavel($event.target.value)" class="form-control">
+            <option value="marketplaces" >marketplaces</option>
+            <option value="periodo">período</option>
+
+       </select>
+    </div>
+
+    <div>
+       Total de vendas: {{  totalVendas  }}
+    </div>
+
+      <table class="table table-dark" [hidden]="tipoEstatistica == 'periodo'">
+        <thead>
+          <tr>
+            <th scope="col">marketplace</th>
+            <th scope="col">número de vendas (fi)</th>
+            <th scope="col">fi</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dado of dados">
+           <td> {{ dado.nomeMarketplace }} </td>   <td> {{ dado.numeroVendas }} </td>
+           <td> {{  ((dado.numeroVendas * 100) / totalVendas) | number:'1.2-2'  }}% </td>
+          </tr>
+        
+        </tbody>
+      </table>
+
+      <table class="table table-dark" [hidden]="tipoEstatistica == 'marketplace'">
+        <thead>
+          <tr>
+            <th scope="col">marketplace</th>
+            <th scope="col">número de vendas (fi)</th>
+            <th scope="col">fi</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dado of dados2">
+           <td> {{ dado.nomePeriodo }} </td>   <td> {{ dado.numeroVendas }} </td>
+           <td> {{  ((dado.numeroVendas * 100) / totalVendas) | number:'1.2-2'  }}% </td>
+          </tr>
+        
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="col-md-5">
+      <div style="display: block;">
+        <canvas baseChart 
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+      
+    </div>
+
+</div>

@@ -1,0 +1,20 @@
+
+<div class="row">
+
+  <div class="col-md-3">
+<app-menu-lateral></app-menu-lateral>
+  </div>
+
+  <div class="col-md-9">
+
+    <a [routerLink]="['anunciar']" class="btn btn-primary"> anunciar produto </a>
+
+<div *ngFor="let anuncio of anuncios" >
+
+  {{ anuncio.titulo }}
+
+</div>
+
+  </div>
+</div>
+

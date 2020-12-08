@@ -1,0 +1,48 @@
+<div class="row">
+
+    <div class="col-md-3">
+<app-menu-lateral></app-menu-lateral>
+    </div>
+
+    <div class="col-md-9">
+
+Nome produto
+<div>
+ <input disabled value="{{ produto.nome  }}">
+</div>
+
+Estoque
+<div>
+ <input disabled value="{{ produto.estoque  }}">
+</div>
+
+Preço
+<div>
+ <input disabled value="{{ produto.preco  }}">
+</div>
+
+SKU
+<div>
+ <input disabled value="{{ produto.sku  }}">
+</div>
+
+Descrição
+<div>
+ <textarea disabled>{{ produto.sku  }}</textarea> 
+</div>
+
+<div>
+
+    <div class="row">
+    <div class="col-md-3" *ngFor="let foto of produto.fotos">
+
+        <img  class="img-fluid" src="{{ 'http://localhost:50751/fotos_produtos/' + produto.dirFotos + '/' + foto }}">
+
+
+    </div>
+</div>
+</div>
+
+</div>
+
+</div>

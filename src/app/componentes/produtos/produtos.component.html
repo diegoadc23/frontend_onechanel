@@ -1,0 +1,172 @@
+
+<div class="ui grid">
+
+  <div class="three wide column">
+    <app-menu-lateral></app-menu-lateral>
+      </div>
+
+      <div class="thirteen wide column">
+
+  <div>
+
+
+
+      <form [formGroup]="frmProduto" (submit)="criarProduto()">
+
+        <div>
+      
+        <label>Nome do produto</label>
+        <input class="form-control" formControlName="nome" name="nome" >
+      
+        </div>
+      
+        <div>
+          <label>marca</label>
+          <select class="form-control" formControlName="marca" name="marca">
+             <option *ngFor="let marca of marcas">{{ marca.nome }} </option> 
+          </select>
+        </div>
+      
+      
+        <div>
+          <label>categoria</label>
+          <select class="form-control" formControlName="categoria" name="categoria">
+            <option> selecione... </option>
+          </select>
+        </div>
+      
+        
+        <div>
+          <label>SKU</label>
+          <input class="form-control" formControlName="sku" name="sku">
+         </div>
+      
+         <div>
+          <label>EAN</label>
+          <input class="form-control" formControlName="ean" name="ean">
+         </div>
+      
+         
+        <div>
+          <label>GTIN/EAN</label>
+          <input class="form-control" formControlName="gtin" name="gtin">
+         </div>
+      
+         
+        <div>
+          <label>MPN</label>
+          <input class="form-control" formControlName="mpn" name="mpn">
+         </div>
+         
+        <div>
+          <label>NCM</label>
+          <input class="form-control" formControlName="ncm" name="ncm">
+         </div>
+      
+        <div>
+        <label>tempo de garantia (em meses) </label>
+        <input class="form-control" formControlName="tempoGarantia" name="tempoGarantia" >
+        </div>
+      
+        <div>
+         <label>preço</label>
+         <input class="form-control" formControlName="preco" name="preco">
+        </div>
+      
+      
+        
+        <div>
+          <label>estado do produto</label>
+          <select class="form-control" formControlName="estado" name="estado">
+              <option value="1" >novo</option>
+              <option value="2">usado</option>
+              <option value="3" >não especificado</option>
+          </select>
+         </div>
+       
+      
+      
+        <div>
+        <label>estoque</label>
+        <input class="form-control" formControlName="estoque" name="estoque">
+        </div>
+
+        <div>
+          <label>vídeo (youtube)</label>
+          <input class="form-control" formControlName="video" name="video">
+        </div>
+      
+     
+
+
+
+      <div>
+        <label>Peso</label>
+        <input class="form-control" formControlName="peso" name="peso">
+      </div>
+    
+      <div>
+        <label>altura</label>
+        <input class="form-control" formControlName="altura" name="altura">
+      </div>
+    
+      <div>
+        <label>largura</label>
+        <input class="form-control" formControlName="largura" name="largura">
+      </div>
+    
+      <div>
+        <label>comprimento</label>
+        <input class="form-control" formControlName="comprimento" name="comprimento">
+      </div>
+    
+  
+   
+
+      <div>
+        <label>descrição</label>
+        <textarea class="form-control" formControlName="descricao" name="descricao"></textarea>
+      </div>
+
+  
+   
+
+      <div>
+        Adicione as fotos do modelo que você considera mais padrão
+      </div>
+
+         <div>
+          <div> adicionar fotos </div>
+          <input id="file" style="display:none" type="file" multiple="multiple">
+          <div (click)="openFile()"> <i class="plus icon"></i> </div>
+         </div>
+
+         <div>
+                             
+         </div>
+
+        </form>
+    </div>
+   
+   
+   
+
+
+
+
+
+ 
+
+
+
+
+  </div>
+
+
+
+
+
+  </div>
+
+
+

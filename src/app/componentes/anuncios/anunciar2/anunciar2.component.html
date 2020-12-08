@@ -1,0 +1,32 @@
+<div>
+<label>Categorização do produto</label>
+
+<select (change)="recuperarSubcategorias($event.target.value)">
+  <option [value]="categoria.id" *ngFor="let categoria of categorias" > {{  categoria.name }} </option>
+</select>
+
+
+<select>
+  <option *ngFor="let subcategoria of subcategorias" > {{  subcategoria.name }} </option>
+</select>
+
+  <form [formGroup]="frmProduto">
+  <div>
+    <label>Nome</label>
+    <input value="{{ produto.nome }}"  formControlName="nome" name="nome" >
+  </div>
+  <div>
+    <label>Descrição</label>
+    <input value="{{ produto.descricao }}" formControlName="descricao" name="descricao" >
+    </div>
+
+    <div>
+      <label>Preco</label>
+      <input value="{{ produto.preco }}" formControlName="preco" name="preco" >
+    </div>
+
+  </form>
+
+<button (click)="anunciar()" >anunciar</button>
+
+</div>
