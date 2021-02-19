@@ -28,15 +28,15 @@ export class AnunciosService {
 
 
   
-  getAnuncios(): Observable<Array<Anuncio>> {
+  getAnuncios(): Observable<Array<Produto>> {
 
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
-    return this.http.get<Array<Anuncio>>('http://localhost:50751/api/anuncios', httpOptions).pipe(
+    return this.http.get<Array<Produto>>('http://localhost:50751/api/anuncios', httpOptions).pipe(
 
-      catchError(this.handleError<Array<Anuncio>>('addProduct'))
+      catchError(this.handleError<Array<Produto>>('addProduct'))
     );
   }
 

@@ -9,9 +9,12 @@
 
     <a [routerLink]="['anunciar']" class="btn btn-primary"> anunciar produto </a>
 
-<div *ngFor="let anuncio of anuncios" >
+<div *ngFor="let produto of produtos" >
 
-  {{ anuncio.titulo }}
+  {{ produto.nome }}
+
+  <a [routerLink]="['anunciar/' + produto.id + '/status']" class="btn btn-sm btn-primary">alterar status</a>
+  <a [routerLink]="['anunciar/' + produto.id + '/status']" class="btn btn-sm btn-primary">exibir detalhes</a>
 
 </div>
 

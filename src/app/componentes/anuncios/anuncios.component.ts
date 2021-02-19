@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnunciosService } from 'src/app/servicos/anuncios.service';
 import { Anuncio } from 'src/app/modelos/anuncio.model';
+import { Produto } from 'src/app/modelos/produto.model';
 
 @Component({
   selector: 'app-anuncios',
@@ -9,7 +10,7 @@ import { Anuncio } from 'src/app/modelos/anuncio.model';
 })
 export class AnunciosComponent implements OnInit {
 
-  anuncios: Array<Anuncio>
+  produtos: Array<Produto>
 
   constructor(private anunciosService: AnunciosService) {
 
@@ -28,7 +29,7 @@ export class AnunciosComponent implements OnInit {
 
        this.anunciosService.getAnuncios().subscribe(res => {
 
-         this.anuncios = res;
+         this.produtos = res;
 
        });
 

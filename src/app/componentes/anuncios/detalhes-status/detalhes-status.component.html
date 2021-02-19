@@ -1,0 +1,25 @@
+<h1>O produto será removido juntamente com os anúncios nos marketplaces</h1>
+
+<div class="row">
+
+<div *ngFor="let anuncio of produto.anuncios" class="col-md-3">
+
+    <div>{{ anuncio.marketplace.nomeMarketplace }}</div>
+
+</div>
+
+</div>
+
+<div>
+
+</div>
+
+<div> {{ produto.id }}</div>
+
+<select>
+    <option>pausar</option>
+    <option>ativar</option>
+
+</select>
+
+<button (click)="alterarStatus()" class="btn btn-danger">alterar produto</button>

@@ -1,66 +1,79 @@
 
 
 
-<div class="ui grid">
+<div class="row">
 
-  <div class="three wide column">
+  <div class="col-md-2">
 <app-menu-lateral></app-menu-lateral>
   </div>
 
-  <div class="thirteen wide column">
+  <div class="col-md-10">
 
+
+    
       <a [routerLink]="['/produtos/adicionar']" class="ui right aligned primary tiny button"> <i class="plus icon"></i> adicionar produto </a>
    
 
   
-      <form  [formGroup]="frmPesquisaProduto" class="ui form" >
+      <form  [formGroup]="frmPesquisaProduto" class="row" >
   
-        <div class="two fields">
-          <div class="field">
-            <label>nome do produto</label>
-            <input  formControlName="nome" name="nome"  class="form-control form-sm">
-          </div>
-          <div class="field">
+      <div class="col-9"> 
+        <label>nome do produto</label>
+        <input  formControlName="nome" name="nome"  class="form-control form-control-sm">
+      </div>
+
+
+      <div class="col-3"> 
+        <label>SKU</label>
+        <input class="form-control form-control-sm" formControlName="sku" name="sku">
+      </div>
+
+        <div class="col-6">
+         
             <label>faixa de preço</label>
-            <div class="two fields">
-              <div class="field">
-                <input type="text" formControlName="precoLimiteInferior" name="precoLimiteInferior">
+              <div class="row">
+             <div class="col">   <input type="text" class="form-control form-control-sm" formControlName="precoLimiteInferior" name="precoLimiteInferior"></div>
+             <div class="col"> <input type="text" class="form-control form-control-sm" formControlName="precoLimiteSuperior" name="precoLimiteSuperior" ></div>
+
+
               </div>
-              <div class="field">
-                <input type="text" formControlName="precoLimiteSuperior" name="precoLimiteSuperior" >
-              </div>
-            </div>
-          </div>
+             
+          
         </div>
 
+       
+
+        <div class="col-3"> 
+          <label>estoque</label>
+          <input class="form-control form-control-sm">
+
+        </div>
+
+        <div class="col-3"> 
      
+          <label>status</label>
+          <select class="form-control form-control-sm">
+            <option> ativo </option>
+            <option> pausado </option>
+          </select>
 
+        </div>
 
+        <div class="col-3">
+          <label>marca</label>
+          <select class="form-control form-control-sm" >
+            <option> Marca um </option>
+            <option> Marca dois </option>
+          </select>
+        </div>
 
-    <div class="four fields">
-      <div class="field">
-    <label>SKU</label>
-    <input class="form-control form-sm" formControlName="sku" name="sku">
-      </div>
-      <div class="field">
-        <label>estoque</label>
-        <input class="form-control form-sm">
-          </div>
-          <div class="field">
-            <label>status</label>
-            <select class="form-control form-sm" >
-              <option> ativo </option>
-              <option> pausado </option>
-            </select>
-          </div>
-          <div class="field">
-            <label>marca</label>
-            <select class="form-control form-sm" >
-              <option> Marca um </option>
-              <option> Marca dois </option>
-            </select>
-          </div>
-      </div>
+        <div class="col-3">
+          <label style="visibility: hidden; display:block;">placeholder</label>
+          <button (click)="pesquisar()" class="btn btn-sm btn-primary">  pesquisar  <i class="search icon"></i> </button>
+    
+    
+        </div>
+
 
      
       <div class="four fields">
@@ -88,11 +101,7 @@
         
       </div>
      
-      <div class="field">
-        <button (click)="pesquisar()" class="ui  primary tiny button">  pesquisar  <i class="search icon"></i> </button>
-  
-  
-      </div>
+     
   
         
     </div>
@@ -108,36 +117,33 @@
 
 
 
- 
+<div class="row"> 
+  <div class="col-3">foto </div>
+  <div class="col-3"> SKU </div>
 
+  <div class="col-3"> Nome</div>
+  <div class="col-3"> Preço</div>
 
+</div>
    
 
-    <div class="ui grid"> 
-      <div class="four wide column"> </div>
-      <div class="four wide column"> SKU </div>
-
-      <div class="four wide column"> Nome</div>
-      <div class="four wide column"> Preço</div>
-
-    </div>
-
-<div *ngFor="let produto of produtos"  class="ui grid"  >
+ 
+<div *ngFor="let produto of produtos"  class="row"  >
 
 
-  <div class="two wide column">
-     <img class="ui  circular image" src="{{ 'http://localhost:50751/fotos_produtos/' + produto.dirFotos + '/' + produto.fotos[0] }}">
+  <div class="col-md-2">
+     <img class="img-fluid rounded-circle" src="{{ 'http://localhost:50751/fotos_produtos/' + produto.dirFotos + '/' + produto.fotos[0] }}">
   </div>
 
-  <div class="four wide column"> #{{ produto.sku }} </div>
+  <div class="col-md-3"> #{{ produto.sku }} </div>
 
-  <div class="four wide column"> {{ produto.nome }} </div>
+  <div class="col-md-4"> {{ produto.nome }} </div>
 
 
 
-  <div class="four wide column">
+  <div class="col-md-3">
     {{ produto.preco }}     <button [routerLink]="['/produtos/editar/' + produto.id]" class="btn btn-sm btn-primary">editar</button>
-    <a [routerLink]="['/produtos/detalhes/' + produto.id]" class="btn btn-sm btn-danger">deletar</a>
+    <a [routerLink]="['/produtos/deletar/' + produto.id]" class="btn btn-sm btn-danger">deletar</a>
 
     <a [routerLink]="['/produtos/detalhes/' + produto.id]" class="btn btn-sm btn-primary">detalhes</a>
   </div>
@@ -146,8 +152,6 @@
 
 </div>
 
-<div class="" >
 
-</div>
   </div>
 </div>

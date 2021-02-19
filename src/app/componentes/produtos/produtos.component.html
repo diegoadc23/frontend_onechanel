@@ -1,34 +1,35 @@
 
-<div class="ui grid">
+<div class="row">
 
-  <div class="three wide column">
+  <div class="col-md-2">
     <app-menu-lateral></app-menu-lateral>
       </div>
 
-      <div class="thirteen wide column">
+      <div class="col-md-10">
 
   <div>
 
 
 
-      <form [formGroup]="frmProduto" (submit)="criarProduto()">
+      <form class="row"  [formGroup]="frmProduto" (submit)="criarProduto()">
 
-        <div>
-      
+       <div class="col-6">
         <label>Nome do produto</label>
         <input class="form-control" formControlName="nome" name="nome" >
+      </div>
+
+      <div class="col-3">
+        <label>marca</label>
+        <select class="form-control" formControlName="marca" name="marca">
+           <option *ngFor="let marca of marcas">{{ marca.nome }} </option> 
+        </select>
+      </div>
+
       
-        </div>
-      
-        <div>
-          <label>marca</label>
-          <select class="form-control" formControlName="marca" name="marca">
-             <option *ngFor="let marca of marcas">{{ marca.nome }} </option> 
-          </select>
-        </div>
+     
       
       
-        <div>
+        <div class="col-3">
           <label>categoria</label>
           <select class="form-control" formControlName="categoria" name="categoria">
             <option> selecione... </option>
@@ -36,46 +37,39 @@
         </div>
       
         
-        <div>
+        <div class="col-3">
           <label>SKU</label>
           <input class="form-control" formControlName="sku" name="sku">
          </div>
       
-         <div>
+         <div class="col-3">
           <label>EAN</label>
           <input class="form-control" formControlName="ean" name="ean">
          </div>
       
          
-        <div>
+        <div class="col-3">
           <label>GTIN/EAN</label>
           <input class="form-control" formControlName="gtin" name="gtin">
          </div>
       
          
-        <div>
+        <div class="col-3">
           <label>MPN</label>
           <input class="form-control" formControlName="mpn" name="mpn">
          </div>
          
-        <div>
+        <div class="col-3">
           <label>NCM</label>
           <input class="form-control" formControlName="ncm" name="ncm">
          </div>
       
-        <div>
+        <div class="col-3">
         <label>tempo de garantia (em meses) </label>
         <input class="form-control" formControlName="tempoGarantia" name="tempoGarantia" >
         </div>
-      
-        <div>
-         <label>preço</label>
-         <input class="form-control" formControlName="preco" name="preco">
-        </div>
-      
-      
-        
-        <div>
+
+        <div class="col-3">
           <label>estado do produto</label>
           <select class="form-control" formControlName="estado" name="estado">
               <option value="1" >novo</option>
@@ -83,45 +77,44 @@
               <option value="3" >não especificado</option>
           </select>
          </div>
-       
-      
-      
-        <div>
-        <label>estoque</label>
-        <input class="form-control" formControlName="estoque" name="estoque">
-        </div>
 
-        <div>
-          <label>vídeo (youtube)</label>
-          <input class="form-control" formControlName="video" name="video">
-        </div>
-      
-     
+         <div class="col-3">
+          <label>estoque</label>
+          <input class="form-control" formControlName="estoque" name="estoque">
+          </div>
 
-
-
-      <div>
+          
+      <div class="col-3">
         <label>Peso</label>
         <input class="form-control" formControlName="peso" name="peso">
       </div>
     
-      <div>
+      <div  class="col-3">
         <label>altura</label>
         <input class="form-control" formControlName="altura" name="altura">
       </div>
     
-      <div>
+      <div  class="col-3">
         <label>largura</label>
         <input class="form-control" formControlName="largura" name="largura">
       </div>
     
-      <div>
+      <div  class="col-3">
         <label>comprimento</label>
         <input class="form-control" formControlName="comprimento" name="comprimento">
       </div>
-    
+      
+        <div class="col-6">
+         <label>preço</label>
+         <input class="form-control" formControlName="preco" name="preco">
+        </div>
+      
+        <div class="col-6">
+          <label>vídeo (youtube)</label>
+          <input class="form-control" formControlName="video" name="video">
+        </div>
   
-   
+
 
       <div>
         <label>descrição</label>
@@ -137,19 +130,58 @@
 
          <div>
           <div> adicionar fotos </div>
-          <input id="file" style="display:none" type="file" multiple="multiple">
-          <div (click)="openFile()"> <i class="plus icon"></i> </div>
+          <input id="file"  (change)="handleFileInput(-1, 0, $event.target.files)" style="display:none" type="file" multiple="multiple">
+          <div (click)="openFile()"> <i class="plus icon"></i> plus</div>
          </div>
 
          <div>
                              
          </div>
 
+         <div>
+          <button type="submit">cadastrar produto</button>
+        </div>
+
         </form>
+        <div>
+          <label>SKU</label>
+          <input class="form-control">
+        </div>
+
+        <h1>Variações</h1>
+
+        <form [formGroup]="frmVariacoes">
+
+                 
+          <div formArrayName="variacoes">
+            <div *ngFor="let item of variacoes.controls; let pointIndex=index" [formGroupName]="pointIndex">
+            <label>
+              SKU: <input formControlName="sku" />
+            </label>
+
+         <div>
+            <input type="file" (change)="handleFileInput(pointIndex, 1, $event.target.files)" formControlName="imagem1" />
+            <input type="file" (change)="handleFileInput(pointIndex, 2,  $event.target.files)" formControlName="imagem2" />
+            <input type="file" (change)="handleFileInput(pointIndex, 3, $event.target.files)" formControlName="imagem3" />
+            <input type="file" (change)="handleFileInput(pointIndex, 4,  $event.target.files)" formControlName="imagem4" />
+          </div>
+            <button type="button" (click)="deleteSellingPoint(pointIndex)">Remover</button>
+            </div>
+            <button type="button" (click)="addSellingPoint()">Adicionar</button>
+          </div>
+        
+        </form>
+        
+        {{ this.frmVariacoes.value | json }}
+        
+        <div>
+            <button (click)="exibirFormularioNovaVariacao()" class="btn btn-primary">adicionar variação <i class="plus icon"></i></button>
+        </div>
+
     </div>
    
    
-   
+  
 
 
 

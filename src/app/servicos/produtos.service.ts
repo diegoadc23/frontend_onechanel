@@ -37,6 +37,14 @@ export class ProdutosService {
     );
   }
 
+  getProdutoAnuncios(idProduto: string): Observable<Produto> {
+
+    return this.http.get<Produto>("http://localhost:50751/api/produtos/" + idProduto + "/anuncios").pipe(
+
+      catchError(this.handleError<Produto>(`getProduct id=${idProduto}`))
+    );
+  }
+
   putProduto(produto: Produto): Observable<Produto>{
 
     return this.http.put<Produto>("http://localhost:50751/api/produtos/" + produto.id, produto  ).pipe(
@@ -45,6 +53,27 @@ export class ProdutosService {
     );
 
   }
+
+  
+
+  deleteProduto(idProduto:string): Observable<Produto>{
+
+    return this.http.delete<Produto>("http://localhost:50751/api/produtos/" + idProduto  ).pipe(
+
+      catchError(this.handleError<Produto>(`getProduct id=`))
+    );
+
+  }
+
+  alterarStatusProduto(idProduto:string): Observable<Produto>{
+
+    return this.http.put<Produto>("http://localhost:50751/api/produtos/" + idProduto + "/status", null  ).pipe(
+
+      catchError(this.handleError<Produto>(`getProduct id=`))
+    );
+
+  }
+
 
 
   addProduto (produto: FormData): Observable<Produto> {
