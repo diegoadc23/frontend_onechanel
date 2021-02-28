@@ -138,16 +138,36 @@
                              
          </div>
 
-         <div>
-          <button type="submit">cadastrar produto</button>
-        </div>
+        
 
         </form>
+     
+        <div *ngIf="!atributosForamDefinidos">
+
+        <div>Se o produto tem variações, selecione o conjunto de atributos.</div>
         <div>
-          <label>SKU</label>
-          <input class="form-control">
+          <select #selectAtriutosVariacao>
+            <option value="1">Cor</option>
+            <option value="2">Tamanho (ex P, M, G)</option>
+            <option value="numero">Numero (1, 2, 3)</option>
+            <option value="voltagem">Voltagem</option>
+
+          </select>
+
+          <div>
+             <div *ngFor="let atributoSelecionado of atributosSelecionadosVariacao">
+                 {{ atributoSelecionado }}
+             </div>
+          </div>
+
+          <button (click)="selecionarAtributo(selectAtriutosVariacao.value)" class="btn btn-primary">Incluir atributo</button>
         </div>
 
+        <div>
+          <button (click)="esconderFrmEscolhaAtributoMostrarFrmVariacoes()" class="btn btn-primary">adicionar variações</button>
+        </div>
+        </div>
+        <div *ngIf="atributosForamDefinidos">
         <h1>Variações</h1>
 
         <form [formGroup]="frmVariacoes">
@@ -158,6 +178,16 @@
             <label>
               SKU: <input formControlName="sku" />
             </label>
+            
+
+            <div *ngFor="let atributoSelecionado of atributosSelecionadosVariacao; let i = index">
+
+                <label>{{ atributoSelecionado }}</label>
+                <select>
+                  <option *ngFor="let atributo of atributos[i]">{{ atributo.nomeAtributo }}</option>
+                </select>
+
+            </div>
 
          <div>
             <input type="file" (change)="handleFileInput(pointIndex, 1, $event.target.files)" formControlName="imagem1" />
@@ -177,7 +207,12 @@
         <div>
             <button (click)="exibirFormularioNovaVariacao()" class="btn btn-primary">adicionar variação <i class="plus icon"></i></button>
         </div>
+        </div>
 
+    </div>
+
+    <div>
+      <button type="submit">cadastrar produto</button>
     </div>
    
    

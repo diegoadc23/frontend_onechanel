@@ -5,6 +5,8 @@ import {Produto} from '../../modelos/produto.model';
 import { MarcasService } from 'src/app/servicos/marcas.service';
 import { Marca } from 'src/app/modelos/marca.model';
 import { Variacao } from 'src/app/modelos/variacao.model';
+import { AtributosService } from 'src/app/servicos/atributos.service';
+import { Atributo } from 'src/app/modelos/atributo.model';
 
 @Component({
   selector: 'app-produtos',
@@ -19,11 +21,19 @@ export class ProdutosComponent implements OnInit {
   marcas: Array<Marca>;
   abaAtual: string;
   frmVariacoes: FormGroup;
+  atributosSelecionadosVariacao:Array<String>;
+  atributosForamDefinidos:boolean;
+  atributos: Array<Array<Atributo>>;
 
-  constructor(private fb: FormBuilder, private produtosService: ProdutosService, private marcasService: MarcasService) {
+  constructor(private fb: FormBuilder,
+    private atributosService:AtributosService
+    ,private produtosService: ProdutosService, private marcasService: MarcasService) {
 
-
+    this.atributosForamDefinidos = false;
     this.variacoesArr = new Array<Variacao>();
+    
+    this.atributosSelecionadosVariacao = new Array<String>();
+    this.atributos = new Array<Array<Atributo>>();
 
     this.frmVariacoes = this.fb.group({
   
@@ -173,6 +183,36 @@ export class ProdutosComponent implements OnInit {
 
   deleteSellingPoint(index) {
     this.variacoes.removeAt(index);
+  }
+
+
+  selecionarAtributo(valor:string){
+      this.atributosSelecionadosVariacao.push(valor);
+  }
+
+  esconderFrmEscolhaAtributoMostrarFrmVariacoes():void {
+
+
+    for(let i = 0; i < this.atributosSelecionadosVariacao.length; i++){
+
+      this.atributosService.getAtributos(parseInt(this.atributosSelecionadosVariacao[i].toString())).subscribe((res) => {
+
+        this.atributos.push(res);
+
+      });
+
+    }
+
+    this.atributosForamDefinidos = true;
+
+    
+
+  }
+
+  recuperarAtributos(id:number):Array<Atributo> {
+
+   return null;
+
   }
 
 }
